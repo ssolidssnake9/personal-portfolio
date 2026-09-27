@@ -43,10 +43,14 @@
   .hero p.lead{color:var(--muted);font-size:1.15rem;max-width:640px;margin:1.25rem auto 2rem}
   .cta{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap}
   .btn{display:inline-block;padding:.75rem 1.6rem;border-radius:10px;font-weight:600;
-    border:1px solid var(--border);color:var(--text);background:var(--panel)}
+    border:1px solid var(--border);color:var(--text);background:var(--panel);
+    position:relative;overflow:hidden;cursor:pointer;font-size:1rem;font-family:inherit}
   .btn:hover{text-decoration:none;border-color:var(--accent)}
   .btn.primary{background:var(--accent);border-color:var(--accent);color:#111}
   .btn.primary:hover{filter:brightness(1.08)}
+  .btn .ripple{position:absolute;border-radius:50%;transform:scale(0);
+    background:rgba(255,255,255,.45);animation:ripple .6s ease-out forwards;pointer-events:none}
+  @keyframes ripple{to{transform:scale(4);opacity:0}}
 
   section{padding:3.5rem 0}
   section h2{font-size:1.7rem;margin-bottom:.4rem;letter-spacing:-.01em}
@@ -56,6 +60,10 @@
 
   .card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem}
 
+  /* scroll reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.visible{opacity:1;transform:none}
+
   /* skills */
   .chips{display:flex;flex-wrap:wrap;gap:.6rem}
   .chip{background:var(--accent-soft);border:1px solid rgba(249,115,22,.3);
@@ -64,15 +72,37 @@
   .skill-grid h3{font-size:1rem;margin-bottom:.35rem;color:var(--accent)}
   .skill-grid p{color:var(--muted);font-size:.92rem}
 
-  /* projects */
-  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem}
-  .proj{display:flex;flex-direction:column;transition:transform .15s ease,border-color .15s ease}
-  .proj:hover{transform:translateY(-3px);border-color:var(--accent)}
-  .proj h3{font-size:1.1rem;margin-bottom:.5rem}
-  .proj p{color:var(--muted);font-size:.93rem;flex:1}
-  .proj .meta{display:flex;justify-content:space-between;align-items:center;margin-top:1.1rem;font-size:.85rem}
-  .proj .lang{color:var(--muted)}
-  .proj .lang i{display:inline-block;width:.7em;height:.7em;border-radius:50%;background:#3572A5;margin-right:.35rem}
+  /* expanding project panels */
+  .panels{display:flex;gap:1rem;min-height:380px}
+  .panel{flex:1;border-radius:var(--radius);border:1px solid var(--border);
+    padding:1.5rem;display:flex;flex-direction:column;justify-content:flex-end;
+    cursor:pointer;overflow:hidden;position:relative;
+    transition:flex .5s cubic-bezier(.2,.8,.2,1),border-color .3s;min-width:0}
+  .panel:hover{border-color:var(--accent)}
+  .panel.active{flex:3.2}
+  .panel h3{font-size:1.25rem;margin-bottom:.4rem;white-space:nowrap}
+  .panel .tag{font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+  .panel .body{max-height:0;opacity:0;overflow:hidden;transition:max-height .5s ease,opacity .4s ease .1s}
+  .panel.active .body{max-height:300px;opacity:1}
+  .panel .body p{color:var(--muted);font-size:.93rem;margin-bottom:1rem}
+  .panel .num{position:absolute;top:1rem;right:1.2rem;font-size:2.2rem;font-weight:800;
+    color:rgba(255,255,255,.14)}
+  .p1{background:linear-gradient(160deg,#1a1206 0%,#161b22 70%)}
+  .p2{background:linear-gradient(160deg,#0a1626 0%,#161b22 70%)}
+  .p3{background:linear-gradient(160deg,#170f24 0%,#161b22 70%)}
+
+  /* github live strip */
+  .gh{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
+  .gh img{width:88px;height:88px;border-radius:50%;border:2px solid var(--accent)}
+  .gh .who{flex:1;min-width:200px}
+  .gh .who strong{font-size:1.15rem}
+  .gh .who p{color:var(--muted);font-size:.9rem}
+  .gh .stats{display:flex;gap:1.75rem}
+  .gh .stat{text-align:center}
+  .gh .stat b{display:block;font-size:1.5rem;color:var(--accent)}
+  .gh .stat span{font-size:.8rem;color:var(--muted)}
+  .gh .latest{width:100%;border-top:1px solid var(--border);padding-top:1rem;
+    color:var(--muted);font-size:.9rem}
 
   /* timeline */
   .timeline{position:relative;margin-left:.5rem;padding-left:1.75rem;border-left:2px solid var(--border)}
@@ -104,12 +134,19 @@
     .menu-btn{display:block}
     .hero{padding:3.5rem 0 2.5rem}
     section{padding:2.5rem 0}
+    .panels{flex-direction:column;min-height:0}
+    .panel{min-height:96px}
+    .panel.active{min-height:300px}
+    .panel h3{white-space:normal}
   }
 
   @media print{
+    nav,.hero .cta,.resume-actions,.menu-btn,footer,.reveal{opacity:1!important;transform:none!important}
     nav,.hero .cta,.resume-actions,.menu-btn,footer{display:none!important}
     body{background:#fff;color:#111}
     .card{border:1px solid #ccc;break-inside:avoid}
+    .panel{flex:1!important}
+    .panel .body{max-height:none!important;opacity:1!important}
     section{padding:1.2rem 0}
     a{color:#111}
   }
@@ -124,6 +161,7 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
+      <a href="#github-live">GitHub</a>
       <a href="#experience">Experience</a>
       <a href="#resume">Résumé</a>
       <a href="#contact">Contact</a>
@@ -149,7 +187,7 @@
   <section id="about">
     <h2>About</h2>
     <p class="sub">The short version.</p>
-    <div class="card">
+    <div class="card reveal">
       <p>I'm a developer who learns by building. I work mostly in Python — scraping the web for signal, turning raw datasets into dashboards people can actually read, and implementing machine learning from first principles so I understand what's under the hood.</p>
       <p style="margin-top:.9rem">Everything I ship is open source. I keep my work public, my process iterative, and my identity low-key — the code speaks for itself.</p>
     </div>
@@ -158,7 +196,7 @@
   <section id="skills">
     <h2>Skills</h2>
     <p class="sub">What I reach for.</p>
-    <div class="chips">
+    <div class="chips reveal">
       <span class="chip">Python</span><span class="chip">NumPy</span>
       <span class="chip">scikit-learn</span><span class="chip">pandas</span>
       <span class="chip">Web Scraping</span><span class="chip">REST APIs</span>
@@ -167,42 +205,62 @@
       <span class="chip">AI Agents</span><span class="chip">Automation</span>
     </div>
     <div class="skill-grid">
-      <div class="card"><h3>Data Engineering</h3><p>Scrapers, pipelines, and ETL that turn messy web data into clean, analyzable datasets.</p></div>
-      <div class="card"><h3>Machine Learning</h3><p>Classifiers built from scratch in NumPy, evaluated properly, benchmarked against sklearn.</p></div>
-      <div class="card"><h3>Visualization</h3><p>Interactive dashboards that turn raw numbers into insights non-technical people can use.</p></div>
+      <div class="card reveal"><h3>Data Engineering</h3><p>Scrapers, pipelines, and ETL that turn messy web data into clean, analyzable datasets.</p></div>
+      <div class="card reveal"><h3>Machine Learning</h3><p>Classifiers built from scratch in NumPy, evaluated properly, benchmarked against sklearn.</p></div>
+      <div class="card reveal"><h3>Visualization</h3><p>Interactive dashboards that turn raw numbers into insights non-technical people can use.</p></div>
     </div>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
-    <p class="sub">Shipped and open source.</p>
-    <div class="proj-grid">
-      <div class="card proj">
+    <p class="sub">Click a panel to expand. Shipped and open source.</p>
+    <div class="panels reveal" id="panels">
+      <div class="panel p1 active">
+        <span class="num">01</span>
+        <div class="tag">Machine Learning</div>
         <h3>ML Pipeline from Scratch</h3>
-        <p>Machine learning pipeline built from first principles — NumPy classifiers, evaluation metrics, and head-to-head sklearn comparisons.</p>
-        <div class="meta"><span class="lang"><i></i>Python</span><a href="https://github.com/ssolidssnake9/ml-pipeline-from-scratch" target="_blank" rel="noopener">View repo ↗</a></div>
+        <div class="body">
+          <p>Machine learning pipeline built from first principles — NumPy classifiers, evaluation metrics, and head-to-head sklearn comparisons.</p>
+          <a href="https://github.com/ssolidssnake9/ml-pipeline-from-scratch" target="_blank" rel="noopener">View repo ↗</a>
+        </div>
       </div>
-      <div class="card proj">
+      <div class="panel p2">
+        <span class="num">02</span>
+        <div class="tag">Data Collection</div>
         <h3>Web Scraper Trend Analyzer</h3>
-        <p>Advanced web scraper paired with a trend analyzer — collect the data, then find the story inside it.</p>
-        <div class="meta"><span class="lang"><i></i>Python</span><a href="https://github.com/ssolidssnake9/advanced-web-scraper-trend-analyzer" target="_blank" rel="noopener">View repo ↗</a></div>
+        <div class="body">
+          <p>Advanced web scraper paired with a trend analyzer — collect the data, then find the story inside it.</p>
+          <a href="https://github.com/ssolidssnake9/advanced-web-scraper-trend-analyzer" target="_blank" rel="noopener">View repo ↗</a>
+        </div>
       </div>
-      <div class="card proj">
-        <h3>Interactive Data Visualization Dashboard</h3>
-        <p>Turn raw datasets into consumer insights with an interactive dashboard built for exploration.</p>
-        <div class="meta"><span class="lang"><i></i>Python</span><a href="https://github.com/ssolidssnake9/interactive-data-visualization-dashboard" target="_blank" rel="noopener">View repo ↗</a></div>
+      <div class="panel p3">
+        <span class="num">03</span>
+        <div class="tag">Visualization</div>
+        <h3>Data Viz Dashboard</h3>
+        <div class="body">
+          <p>Turn raw datasets into consumer insights with an interactive dashboard built for exploration.</p>
+          <a href="https://github.com/ssolidssnake9/interactive-data-visualization-dashboard" target="_blank" rel="noopener">View repo ↗</a>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <section id="github-live">
+    <h2>Live from GitHub</h2>
+    <p class="sub">Pulled fresh from the API on every visit.</p>
+    <div class="card gh reveal" id="ghCard">
+      <p style="color:var(--muted)">Loading GitHub stats…</p>
     </div>
   </section>
 
   <section id="experience">
     <h2>Experience</h2>
     <p class="sub">What I've actually shipped.</p>
-    <div class="timeline">
+    <div class="timeline reveal">
       <div class="tl-item">
         <div class="date">Sep 2026</div>
         <h3>Open-source builder</h3>
-        <p>Shipped three public Python projects: an ML pipeline from scratch, a web scraper + trend analyzer, and an interactive data visualization dashboard.</p>
+        <p>Shipped three public Python projects: an ML pipeline from scratch, a web scraper + trend analyzer, and an interactive data visualization dashboard — then a portfolio site on GitHub Pages, upgraded with interactive components.</p>
       </div>
       <div class="tl-item">
         <div class="date">Sep 2026</div>
@@ -223,7 +281,7 @@
     <div class="resume-actions">
       <button class="btn primary" onclick="window.print()">🖨 Print / Save as PDF</button>
     </div>
-    <div class="card resume">
+    <div class="card resume reveal">
       <h3 style="margin-top:0">Summary</h3>
       <p>Python developer focused on data tooling and machine learning. Builds scrapers, pipelines, and dashboards in the open — every project public on GitHub.</p>
       <h3>Technical skills</h3>
@@ -242,6 +300,7 @@
       <h3>Links</h3>
       <ul>
         <li>GitHub: github.com/ssolidssnake9</li>
+        <li>Portfolio: ssolidssnake9.github.io/personal-portfolio</li>
       </ul>
     </div>
   </section>
@@ -249,7 +308,7 @@
   <section id="contact" class="contact">
     <h2 style="text-align:left">Contact</h2>
     <p class="sub" style="text-align:left">I keep it simple.</p>
-    <div class="card">
+    <div class="card reveal">
       <p>The best way to reach me is through GitHub — open an issue on any repo, or find me at:</p>
       <p style="margin-top:1rem"><a class="btn primary" href="https://github.com/ssolidssnake9" target="_blank" rel="noopener">github.com/ssolidssnake9</a></p>
     </div>
@@ -262,11 +321,70 @@
 </footer>
 
 <script>
-  const btn = document.getElementById('menuBtn');
-  const links = document.getElementById('navLinks');
-  btn.addEventListener('click', () => links.classList.toggle('open'));
-  links.querySelectorAll('a').forEach(a =>
-    a.addEventListener('click', () => links.classList.remove('open')));
+'use strict';
+
+// mobile nav
+const btn = document.getElementById('menuBtn');
+const links = document.getElementById('navLinks');
+btn.addEventListener('click', () => links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a =>
+  a.addEventListener('click', () => links.classList.remove('open')));
+
+// expanding project panels
+const panels = document.querySelectorAll('.panel');
+panels.forEach(p => p.addEventListener('click', () => {
+  panels.forEach(q => q.classList.remove('active'));
+  p.classList.add('active');
+}));
+
+// scroll-reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// button ripple
+document.querySelectorAll('.btn').forEach(b => b.addEventListener('click', e => {
+  const r = b.getBoundingClientRect();
+  const s = document.createElement('span');
+  const size = Math.max(r.width, r.height);
+  s.className = 'ripple';
+  s.style.width = s.style.height = size + 'px';
+  s.style.left = (e.clientX - r.left - size / 2) + 'px';
+  s.style.top = (e.clientY - r.top - size / 2) + 'px';
+  b.appendChild(s);
+  setTimeout(() => s.remove(), 650);
+}));
+
+// live GitHub stats (public API, no key)
+(async () => {
+  const card = document.getElementById('ghCard');
+  try {
+    const [u, repos] = await Promise.all([
+      fetch('https://api.github.com/users/ssolidssnake9').then(r => r.json()),
+      fetch('https://api.github.com/users/ssolidssnake9/repos?sort=updated&per_page=5').then(r => r.json())
+    ]);
+    if (!u || !u.login) throw new Error('bad response');
+    const latest = Array.isArray(repos) && repos.length
+      ? `Latest activity: <a href="${repos[0].html_url}" target="_blank" rel="noopener">${repos[0].name}</a> — ${repos[0].description || 'no description'}`
+      : '';
+    card.innerHTML =
+      `<img src="${u.avatar_url}&s=176" alt="GitHub avatar" loading="lazy">` +
+      `<div class="who"><strong>@${u.login}</strong>` +
+      `<p>${u.bio || 'Building in the open.'}</p></div>` +
+      `<div class="stats">` +
+      `<div class="stat"><b>${u.public_repos}</b><span>repos</span></div>` +
+      `<div class="stat"><b>${u.followers}</b><span>followers</span></div>` +
+      `<div class="stat"><b>${u.following}</b><span>following</span></div>` +
+      `</div>` +
+      (latest ? `<div class="latest">${latest}</div>` : '');
+  } catch {
+    card.innerHTML = '<p style="color:var(--muted)">GitHub stats are unavailable right now — ' +
+      '<a href="https://github.com/ssolidssnake9" target="_blank" rel="noopener">visit the profile directly ↗</a>.</p>';
+  }
+})();
 </script>
 </body>
 </html>
