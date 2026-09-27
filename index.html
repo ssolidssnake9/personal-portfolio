@@ -160,6 +160,7 @@
     <div class="links" id="navLinks">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
+      <a href="#capabilities">Capabilities</a>
       <a href="#projects">Projects</a>
       <a href="#github-live">GitHub</a>
       <a href="#experience">Experience</a>
@@ -203,11 +204,25 @@
       <span class="chip">Data Visualization</span><span class="chip">Git &amp; GitHub</span>
       <span class="chip">GitHub Pages</span><span class="chip">HTML / CSS / JS</span>
       <span class="chip">AI Agents</span><span class="chip">Automation</span>
+      <span class="chip">Binary Analysis</span><span class="chip">YARA</span>
+      <span class="chip">Secret Scanning</span><span class="chip">Profiling</span>
+      <span class="chip">Flame Graphs</span><span class="chip">LLM Systems</span>
     </div>
     <div class="skill-grid">
       <div class="card reveal"><h3>Data Engineering</h3><p>Scrapers, pipelines, and ETL that turn messy web data into clean, analyzable datasets.</p></div>
       <div class="card reveal"><h3>Machine Learning</h3><p>Classifiers built from scratch in NumPy, evaluated properly, benchmarked against sklearn.</p></div>
       <div class="card reveal"><h3>Visualization</h3><p>Interactive dashboards that turn raw numbers into insights non-technical people can use.</p></div>
+    </div>
+  </section>
+
+  <section id="capabilities">
+    <h2>Capabilities</h2>
+    <p class="sub">New research areas — learned by doing, documented in the open.</p>
+    <div class="skill-grid">
+      <div class="card reveal"><h3>Defensive Security</h3><p>Binary analysis with capstone and LIEF, ROP gadget enumeration, secret scanning with gitleaks, container vulnerability scanning with trivy. Static-only malware triage — hashing, YARA rules, string analysis — samples are never executed.</p></div>
+      <div class="card reveal"><h3>Performance Profiling</h3><p>CPU and heap profiling with flame graphs in pprof format. Found a real blind spot in a profiler's defaults — synchronous work before the first event-loop turn was silently dropped from every profile — and documented the fix. Took a benchmark service from 81 to 3,036 requests/sec.</p></div>
+      <div class="card reveal"><h3>Debugging Depth</h3><p>Line-level execution tracing, Debug Adapter Protocol internals, and record-replay discipline: log seeds and inputs so any run can be reproduced exactly.</p></div>
+      <div class="card reveal"><h3>AI Agent Systems</h3><p>Autonomous agents with persistent memory, token-economy discipline, retrieval hygiene, and heartbeat coordination patterns. Live API integrations: Hugging Face inference, Notion, PromptFrenzy.</p></div>
     </div>
   </section>
 
@@ -259,6 +274,11 @@
     <div class="timeline reveal">
       <div class="tl-item">
         <div class="date">Sep 2026</div>
+        <h3>Security &amp; performance research</h3>
+        <p>Built a defensive security toolkit — binary analysis, secret and container scanning, YARA-based static triage. Profiled services with flame graphs, caught a profiler blind spot that silently dropped startup work from every profile, and pushed a benchmark service from 81 to 3,036 req/s.</p>
+      </div>
+      <div class="tl-item">
+        <div class="date">Sep 2026</div>
         <h3>Open-source builder</h3>
         <p>Shipped three public Python projects: an ML pipeline from scratch, a web scraper + trend analyzer, and an interactive data visualization dashboard — then a portfolio site on GitHub Pages, upgraded with interactive components.</p>
       </div>
@@ -283,11 +303,13 @@
     </div>
     <div class="card resume reveal">
       <h3 style="margin-top:0">Summary</h3>
-      <p>Python developer focused on data tooling and machine learning. Builds scrapers, pipelines, and dashboards in the open — every project public on GitHub.</p>
+      <p>Python developer focused on data tooling and machine learning. Builds scrapers, pipelines, and dashboards in the open — every project public on GitHub. Recent work spans defensive security tooling and performance profiling.</p>
       <h3>Technical skills</h3>
       <ul>
         <li><strong>Languages:</strong> Python, HTML/CSS/JavaScript</li>
         <li><strong>Data &amp; ML:</strong> NumPy, pandas, scikit-learn, data visualization</li>
+        <li><strong>Security:</strong> binary analysis (capstone, LIEF), YARA, gitleaks, trivy</li>
+        <li><strong>Profiling:</strong> flame graphs, pprof, hotspot analysis</li>
         <li><strong>Tools:</strong> Git &amp; GitHub, GitHub Pages, REST APIs, web scraping</li>
         <li><strong>Other:</strong> AI agent workflows, automation, technical writing</li>
       </ul>
