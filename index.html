@@ -90,8 +90,6 @@
   .p1{background:linear-gradient(160deg,#1a1206 0%,#161b22 70%)}
   .p2{background:linear-gradient(160deg,#0a1626 0%,#161b22 70%)}
   .p3{background:linear-gradient(160deg,#170f24 0%,#161b22 70%)}
-  .p4{background:linear-gradient(160deg,#2a0f0f 0%,#161b22 70%)}
-  .p5{background:linear-gradient(160deg,#0d221a 0%,#161b22 70%)}
 
   /* github live strip */
   .gh{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap}
@@ -176,8 +174,8 @@
 <header class="hero" id="top">
   <div class="wrap">
     <span class="kicker">● Open to interesting work</span>
-    <h1>Hi, I'm <span class="hl">ssolidssnake9</span>.<br>I build local-first software.</h1>
-    <p class="lead">Voice interfaces, automation agents, machine learning from scratch, and data tooling — shipped in the open on GitHub.</p>
+    <h1>Hi, I'm <span class="hl">ssolidssnake9</span>.<br>I build things with Python.</h1>
+    <p class="lead">Data pipelines, machine learning from scratch, web scrapers, and dashboards — shipped in the open on GitHub.</p>
     <div class="cta">
       <a class="btn primary" href="#projects">View my work</a>
       <a class="btn" href="https://github.com/ssolidssnake9" target="_blank" rel="noopener">GitHub ↗</a>
@@ -191,7 +189,7 @@
     <h2>About</h2>
     <p class="sub">The short version.</p>
     <div class="card reveal">
-      <p>I'm a developer who learns by building. I work mostly in Python — voice interfaces that run fully offline, scrapers that find signal in noise, dashboards people can actually read, and machine learning implemented from first principles so I understand what's under the hood.</p>
+      <p>I'm a developer who learns by building. I work mostly in Python — scraping the web for signal, turning raw datasets into dashboards people can actually read, and implementing machine learning from first principles so I understand what's under the hood.</p>
       <p style="margin-top:.9rem">Everything I ship is open source. I keep my work public, my process iterative, and my identity low-key — the code speaks for itself.</p>
     </div>
   </section>
@@ -209,14 +207,11 @@
       <span class="chip">Binary Analysis</span><span class="chip">YARA</span>
       <span class="chip">Secret Scanning</span><span class="chip">Profiling</span>
       <span class="chip">Flame Graphs</span><span class="chip">LLM Systems</span>
-      <span class="chip">Voice AI (STT/TTS)</span><span class="chip">Local LLMs (Ollama)</span>
-      <span class="chip">Design Systems</span><span class="chip">Connect-RPC</span>
     </div>
     <div class="skill-grid">
       <div class="card reveal"><h3>Data Engineering</h3><p>Scrapers, pipelines, and ETL that turn messy web data into clean, analyzable datasets.</p></div>
       <div class="card reveal"><h3>Machine Learning</h3><p>Classifiers built from scratch in NumPy, evaluated properly, benchmarked against sklearn.</p></div>
       <div class="card reveal"><h3>Visualization</h3><p>Interactive dashboards that turn raw numbers into insights non-technical people can use.</p></div>
-      <div class="card reveal"><h3>Voice Interfaces</h3><p>Speech-to-text → LLM → text-to-speech pipelines that run 100% offline, with hold-to-talk web UIs.</p></div>
     </div>
   </section>
 
@@ -228,8 +223,6 @@
       <div class="card reveal"><h3>Performance Profiling</h3><p>CPU and heap profiling with flame graphs in pprof format. Found a real blind spot in a profiler's defaults — synchronous work before the first event-loop turn was silently dropped from every profile — and documented the fix. Took a benchmark service from 81 to 3,036 requests/sec.</p></div>
       <div class="card reveal"><h3>Debugging Depth</h3><p>Line-level execution tracing, Debug Adapter Protocol internals, and record-replay discipline: log seeds and inputs so any run can be reproduced exactly.</p></div>
       <div class="card reveal"><h3>AI Agent Systems</h3><p>Autonomous agents with persistent memory, token-economy discipline, retrieval hygiene, and heartbeat coordination patterns. Live API integrations: Hugging Face inference, Notion, PromptFrenzy.</p></div>
-      <div class="card reveal"><h3>Voice AI</h3><p>A fully offline voice loop — parakeet speech-to-text into an Ollama model, out through a local neural TTS voice, driven by a hold-to-talk browser UI. No audio ever leaves the machine.</p></div>
-      <div class="card reveal"><h3>Design Systems</h3><p>An original visual language ("Night Desk") with a lint step that fails the build on off-palette colors, plus contrast checks that catch WCAG failures before they ship.</p></div>
     </div>
   </section>
 
@@ -264,24 +257,6 @@
           <a href="https://github.com/ssolidssnake9/interactive-data-visualization-dashboard" target="_blank" rel="noopener">View repo ↗</a>
         </div>
       </div>
-      <div class="panel p4">
-        <span class="num">04</span>
-        <div class="tag">Voice AI</div>
-        <h3>Local Voice Loop</h3>
-        <div class="body">
-          <p>Fully offline voice assistant: parakeet speech-to-text → Ollama LLM → local neural TTS, with a hold-to-talk web UI. Nothing leaves the machine.</p>
-          <a href="https://github.com/ssolidssnake9/local-voice-loop" target="_blank" rel="noopener">View repo ↗</a>
-        </div>
-      </div>
-      <div class="panel p5">
-        <span class="num">05</span>
-        <div class="tag">Automation</div>
-        <h3>Inkwell Milestone Watch</h3>
-        <div class="body">
-          <p>A quiet daily watcher that tracks a virtual pet's care streak and renders a celebration card when an unlock milestone hits.</p>
-          <a href="https://github.com/ssolidssnake9/inkwell-milestone-watch" target="_blank" rel="noopener">View repo ↗</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -304,18 +279,8 @@
       </div>
       <div class="tl-item">
         <div class="date">Sep 2026</div>
-        <h3>Local voice AI</h3>
-        <p>Built a fully offline voice loop — parakeet speech-to-text into an Ollama model, out through a local neural TTS voice — with a hold-to-talk web UI and a typed RPC spike (protobuf/Connect) exploring how the pieces could talk to each other.</p>
-      </div>
-      <div class="tl-item">
-        <div class="date">Sep 2026</div>
-        <h3>Design systems</h3>
-        <p>Authored an original visual language ("Night Desk") with a lint step that fails the build on off-palette colors and contrast checks that catch WCAG failures before they ship.</p>
-      </div>
-      <div class="tl-item">
-        <div class="date">Sep 2026</div>
         <h3>Open-source builder</h3>
-        <p>Shipped six public projects: an ML pipeline from scratch, a web scraper + trend analyzer, an interactive data visualization dashboard, a fully local voice loop, and a pet-care milestone watcher — plus this portfolio site on GitHub Pages, upgraded with interactive components.</p>
+        <p>Shipped three public Python projects: an ML pipeline from scratch, a web scraper + trend analyzer, and an interactive data visualization dashboard — then a portfolio site on GitHub Pages, upgraded with interactive components.</p>
       </div>
       <div class="tl-item">
         <div class="date">Sep 2026</div>
@@ -338,22 +303,18 @@
     </div>
     <div class="card resume reveal">
       <h3 style="margin-top:0">Summary</h3>
-      <p>Python developer building local-first software: offline voice interfaces, automation agents, and ML from scratch. Ships scrapers, pipelines, and dashboards in the open — every project public on GitHub. Recent work spans voice AI, design systems, defensive security tooling, and performance profiling.</p>
+      <p>Python developer focused on data tooling and machine learning. Builds scrapers, pipelines, and dashboards in the open — every project public on GitHub. Recent work spans defensive security tooling and performance profiling.</p>
       <h3>Technical skills</h3>
       <ul>
-        <li><strong>Languages:</strong> Python, HTML/CSS/JavaScript, TypeScript</li>
+        <li><strong>Languages:</strong> Python, HTML/CSS/JavaScript</li>
         <li><strong>Data &amp; ML:</strong> NumPy, pandas, scikit-learn, data visualization</li>
-        <li><strong>Voice AI:</strong> speech-to-text, local TTS, Ollama, audio pipelines</li>
         <li><strong>Security:</strong> binary analysis (capstone, LIEF), YARA, gitleaks, trivy</li>
         <li><strong>Profiling:</strong> flame graphs, pprof, hotspot analysis</li>
-        <li><strong>Design:</strong> original design systems, contrast enforcement, build-time linting</li>
-        <li><strong>Tools:</strong> Git &amp; GitHub, GitHub Pages, REST APIs, web scraping, protobuf/Connect-RPC</li>
+        <li><strong>Tools:</strong> Git &amp; GitHub, GitHub Pages, REST APIs, web scraping</li>
         <li><strong>Other:</strong> AI agent workflows, automation, technical writing</li>
       </ul>
       <h3>Selected projects</h3>
       <ul>
-        <li><strong>Local Voice Loop</strong> — offline STT → LLM → TTS pipeline with hold-to-talk web UI.</li>
-        <li><strong>Inkwell Milestone Watch</strong> — daily streak watcher that renders celebration cards at unlocks.</li>
         <li><strong>ML Pipeline from Scratch</strong> — NumPy classifiers, evaluation metrics, sklearn comparisons.</li>
         <li><strong>Web Scraper Trend Analyzer</strong> — data collection plus trend analysis in one pipeline.</li>
         <li><strong>Interactive Data Visualization Dashboard</strong> — raw datasets → consumer insights.</li>

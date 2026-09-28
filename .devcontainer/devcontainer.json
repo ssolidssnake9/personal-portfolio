@@ -1,0 +1,14 @@
+{
+  "name": "personal-portfolio",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "forwardPorts": [
+    8000
+  ],
+  "portsAttributes": {
+    "8000": {
+      "label": "Site preview",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "postCreateCommand": "echo 'Preview with: python3 -m http.server 8000'"
+}

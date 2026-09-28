@@ -1,3 +1,5 @@
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/ssolidssnake9/personal-portfolio)
+
 # personal-portfolio
 
 Responsive personal portfolio landing page — skills, bio, projects, experience timeline, printable résumé, and contact. Single-file build (`index.html`, no dependencies, no build step), hosted free on GitHub Pages.
